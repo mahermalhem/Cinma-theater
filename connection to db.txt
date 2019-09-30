@@ -1,0 +1,40 @@
+ try{  
+Class.forName("com.mysql.jdbc.Driver");  
+
+Connection con=DriverManager.getConnection ("jdbc:mysql://localhost:3306/ombs","root","");
+    
+    
+//here sonoo is database name, root is username and password  
+
+Statement stmt=con.createStatement(); 
+
+ResultSet rs=stmt.executeQuery("select * from halls");  
+while(rs.next()) 
+{int id=rs.getInt("id");
+String name=rs.getString("hallName");
+    System.out.println(id+" "+" "+name);
+}
+con.close();}
+catch(Exception e){ System.out.println(e);}
+
+
+
+
+
+
+
+
+2)to insert
+        try{
+Class.forName("com.mysql.jdbc.Driver");  
+
+Connection con=DriverManager.getConnection ("jdbc:mysql://localhost:3306/ombs","root","");
+//here sonoo is database name, root is username and password  
+
+Statement stmt=con.createStatement(); 
+
+                  int rs=stmt.executeUpdate("insert into movieinfo (title,cast,dateOfshow,price,duration,photo,yearOfproduction) \n" +
+"                         values\n" +
+"                           ("+name+","+cast+","+date+","+price+","+duration+","+photoUrl+","+yearOfProduction+")");
+con.close();}
+catch(Exception e){ System.out.println(e);}    

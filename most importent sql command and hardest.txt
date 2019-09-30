@@ -1,0 +1,23 @@
+select customers.firstName ,customers.secondName,movieinfo.title
+
+from
+ customers inner join moviescheduale inner join halls inner join movieinfo inner join booking
+
+where
+
+movieScheduale.hallId=halls.id
+
+and
+halls.hallName='smartsHall'
+
+and
+
+moviescheduale.dateOfShow='5/12/2018'
+
+and 
+booking.customerId=customers.id
+
+and
+booking.movieSchedualeId=movieScheduale.Id
+and
+movieScheduale.movieId=movieinfo.id

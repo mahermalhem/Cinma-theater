@@ -1,0 +1,90 @@
+CREATE DATABASE `ombs`;
+
+1)movieInfo
+create table movieInfo (id int PRIMARY KEY auto_increment not null ,
+title varchar (60),duration int ,cast varchar(200),photo varchar(150),price  varchar (10),yearOfProduction int );
+
+
+
+2)movieScheduale
+create table `movieScheduale` (id int not null primary key auto_increment ,hallId int ,movieId int ,dateOfShow int ,startTime varchar(10), endTime varchar(10));
+
+
+3)halls
+create table halls (id int primary key auto_increment ,hallName varchar(20));
+
+4)customers
+create table customers (id int auto_increment primary key not null,firstName varchar (60), secondName varchar(60),userName varchar (65),
+userPassword int , phoneNumber int);
+
+
+
+
+5)booking
+create table `booking` (ticketId int primary key auto_increment not null ,customerId int ,movieSchedualeId int);
+
+
+
+halls insert :
+insert into halls values (1,"hall 1");
+insert into halls values (2,"hall 2");
+
+
+
+
+
+
+
+6)select statment to display the all booked movies by customer
+
+...select movieinfo.title,movieinfo.dateOfshow,moviescheduale.startTime,moviescheduale.endTime from
+
+  movieinfo inner join moviescheduale inner join booking 
+where
+ booking.customerId=3 and
+  booking.movieSchedualeId=movieScheduale.id and
+  moviescheduale.movieId=movieinfo.id;
+
+
+ 
+
+
+7)this statment to get report for manager
+
+select customers.firstName,customers.secondName,movieinfo.title 
+
+from
+ 
+customers inner join movieinfo inner join moviescheduale inner join halls
+
+where
+
+halls.hallName='herosHall'
+and
+movieinfo.dateOfshow=5/12/2018
+and
+customers.id=2   "2 refer to customer id we get it at the time of login "
+
+8)this one to make sure there is no time comflect
+what i did here is compare the date and time for the movie you want book and date and time for each movie in my booked movie scedual
+you will have only one or none 
+
+
+SELECT hallId,startTime,dateOfShow FROM 
+ ombs.booking inner join moviescheduale inner join movieinfo 
+where
+booking.movieSchedualeId=moviescheduale.id
+and
+moviescheduale.movieId=movieinfo.id
+and
+booking.customerId=5
+AND
+moviescheduale.dateOfShow='5/12/2018'
+and
+moviescheduale.startTime='9 AM'
+
+
+
+
+
+
